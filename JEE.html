@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Aspirant Focus Hub 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #f0f7f9; min-height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0; padding: 20px; }
+        .main-card { background: white; width: 100%; max-width: 1100px; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); overflow: hidden; position: relative; min-height: 90vh; display: flex; flex-direction: column; }
+        .view-transition { animation: fadeIn 0.4s ease-out; flex: 1; display: flex; flex-direction: column; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .quote-box { border-left: 4px solid #2dd4bf; background-color: #f0fdfa; padding: 20px; border-radius: 0 12px 12px 0; margin: 25px 0; }
+        .nav-btn { border: 2px solid #2dd4bf; color: #0d9488; padding: 10px 24px; border-radius: 99px; font-weight: 700; transition: 0.2s; }
+        .nav-btn:hover { background: #f0fdfa; transform: translateY(-2px); }
+        .option-card { cursor: pointer; transition: 0.2s; border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; display: flex; align-items: center; gap: 12px; background: white; }
+        .option-card:hover { border-color: #0d9488; background: #f0fdfa; transform: translateY(-2px); }
+        
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .login-input { width: 100%; padding: 16px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 18px; font-weight: 600; outline: none; }
+        .login-input:focus { border-color: #0d9488; background: #f0fdfa; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #2dd4bf; border-radius: 10px; }
+        
+        .res-item { padding: 1.25rem; background: white; border: 2px solid #f1f5f9; border-radius: 1rem; display: flex; justify-content: space-between; align-items: center; font-weight: 700; margin-bottom: 0.75rem; transition: 0.2s; cursor: pointer; }
+        .res-item:hover { border-color: #2dd4bf; background: #f0fdfa; }
+        .res-item span { background: #f1f5f9; padding: 4px 12px; border-radius: 8px; font-size: 10px; text-transform: uppercase; color: #64748b; }
+    </style>
+</head>
+<body>
+
+<div class="main-card">
+    <div id="login-view" class="view-transition flex items-center justify-center p-6">
+        <div class="w-full max-w-md text-center">
+            <div class="mb-8">
+                <span class="text-5xl">🛡️</span>
+                <h1 class="text-3xl font-black text-gray-900 mt-4">Aspirant Login</h1>
+                <p class="text-gray-500">Access your personalized JEE Dashboard (Will Be Available For Elite Club Soon)</p>
+            </div>
+            <div id="auth-form">
+                <input type="email" id="email-input" class="login-input mb-4" placeholder="Enter Email ID">
+                <div class="relative mb-6">
+                    <span class="absolute left-4 top-4 font-bold text-gray-400">+91</span>
+                    <input type="number" id="phone-input" class="login-input pl-14" placeholder="Mobile Number">
+                </div>
+                <button onclick="sendOTP()" class="w-full py-4 bg-[#0d9488] text-white text-lg font-black rounded-xl shadow-lg">Get OTP</button>
+            </div>
+            <div id="otp-step" class="hidden">
+                <p class="text-sm text-gray-400 mb-2 font-bold uppercase">Enter OTP</p>
+                <input type="number" id="otp-input" class="login-input text-center tracking-[1em] mb-6" placeholder="Enter OTP">
+                <button onclick="verifyOTP()" class="w-full py-4 bg-black text-white text-lg font-black rounded-xl">Verify & Enter</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="profile-view" class="hidden view-transition p-8">
+        <div class="max-w-md mx-auto text-center">
+            <h2 class="text-3xl font-black text-teal-900 mb-2">Welcome!</h2>
+            <div class="space-y-6 mt-8">
+                <input type="text" id="reg-name" class="login-input" placeholder="Your Full Name">
+                <input type="date" id="reg-dob" class="login-input">
+            </div>
+            <button onclick="saveProfile()" class="mt-10 w-full py-4 bg-[#0d9488] text-white text-xl font-black rounded-xl shadow-xl">Save & Continue</button>
+        </div>
+    </div>
+
+    <div id="main-content" class="hidden flex-1 flex flex-col">
+        <div class="bg-[#fff1f1] border-b border-[#ffcfcf] p-3 text-center flex flex-wrap justify-center items-center gap-3">
+            <span class="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">IMPORTANT ANNOUNCEMENT</span>
+            <span class="text-red-700 text-xs sm:text-sm font-bold">Paid Advertisements are Available Now. Interested Can Apply Now.</span>
+            <button onclick="window.open('https://forms.gle/U444xVmARZbv6PHK6', '_blank')" class="bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded uppercase">Apply Now</button>
+        </div>
+
+        <div class="p-6 sm:p-10 flex-1 flex flex-col">
+            <div id="home-view" class="view-transition">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="text-right w-full">
+                        <div id="clock" class="text-3xl font-black text-teal-900">00:00:00</div>
+                        <div id="date" class="text-gray-400 text-xs font-bold uppercase">Loading...</div>
+                    </div>
+                </div>
+                <div class="quote-box">
+                    <p id="dynamic-quote" class="text-teal-900 font-bold italic text-lg leading-snug">"Loading..."</p>
+                    <p id="dynamic-author" class="text-teal-600 text-sm mt-2 font-medium tracking-wide"></p>
+                </div>
+                <div class="text-center mt-10">
+                    <h1 class="text-5xl font-black text-gray-900 mb-2">Hello, <span id="user-display-name">Aspirant</span>!</h1>
+                    <div class="flex flex-wrap justify-center gap-3 mb-10 mt-8">
+                        <button onclick="switchView('songs-view')" class="nav-btn">🎵 Songs</button>
+                        <button onclick="switchView('movies-view')" class="nav-btn">🎬 Movies</button>
+                        <button onclick="switchView('focus-tools-menu')" class="nav-btn">⏱️ Focus Timers</button>
+                        <button class="nav-btn">🎮 Games</button>
+                    </div>
+                    <button onclick="switchView('prep-status-view')" class="w-full max-w-xl py-6 bg-[#0d9488] text-white text-3xl font-black rounded-2xl shadow-xl">START YOUR PREP!</button>
+                    <button onclick="logout()" class="block mx-auto mt-6 text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-red-500 transition">Logout Account</button>
+                </div>
+            </div>
+
+            <div id="prep-status-view" class="hidden view-transition">
+                <h1 class="text-2xl font-black mb-8">Select Your Goal</h1>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                    <div class="option-card font-black text-teal-800" onclick="switchView('iit-jee-view')">⚛️ JEE Main & Advanced</div>
+                    <div class="option-card font-black text-red-800" onclick="switchView('neet-view')">🩺 NEET</div>
+                    <div class="option-card font-black text-orange-800" onclick="switchView('upsc-view')">🏛️UPSC</div>
+                    <div class="option-card font-black text-green-800">⚖️ Govt. Exams</div>
+                    <div class="option-card font-black text-teal-800">⚖️ Boards</div>
+                    <div class="option-card font-black text-red-800">⚖️ NDA</div>
+                    <div class="option-card font-black text-orange-800">⚖️ MHTCET</div>
+                    <div class="option-card font-black text-green-800">⚖️ BITSAT</div>
+                    <div class="option-card font-black text-green-800">⚖️ UGEE</div>
+                    <div class="option-card font-black text-green-800">⚖️ VITEEE</div>
+                </div>
+                <button onclick="switchView('home-view')" class="text-teal-600 font-bold">← Back</button>
+            </div>
+
+            <div id="iit-jee-view" class="hidden view-transition text-center">
+                <h1 class="text-4xl font-black mb-10 text-gray-800">JEE Preparation Resources</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 text-left">
+                    <button class="p-6 bg-teal-50 border border-teal-100 rounded-2xl font-black text-teal-800 hover:bg-teal-100">JEE Main Syllabus 2026</button>
+                    <button onclick="switchView('jee-2025-subjects')" class="p-6 bg-teal-50 border border-teal-100 rounded-2xl font-black text-teal-800 hover:bg-teal-100">JEE Main 2025 Official Papers</button>
+                    <button onclick="switchView('pyq-view')" class="p-6 bg-teal-50 border border-teal-100 rounded-2xl font-black text-teal-800 hover:bg-teal-100">Previous Year Papers 2025-2019 [PDF]</button>
+                    <button class="p-6 bg-teal-50 border border-teal-100 rounded-2xl font-black text-teal-800 hover:bg-teal-100">JEE Main Part Tests [PDF]</button>
+                </div>
+                <button onclick="switchView('prep-status-view')" class="text-teal-600 font-bold underline">← Back</button>
+            </div>
+
+
+
+ <div id="iit-jee-view" class="hidden view-transition text-center">
+                <h1 class="text-4xl font-black mb-10 text-gray-800">NEET Preparation Resources</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 text-left">
+                    <button class="p-6 bg-teal-50 border border-teal-100 rounded-2xl font-black text-teal-800 hover:bg-teal-100">NEET Syllabus 2026</button>
+                    <button onclick="switchView('neet-2025-subjects')" class="p-6 bg-teal-50 border border-teal-100 rounded-2xl font-black text-teal-800 hover:bg-teal-100">NEET 2025 Official Papers</button>
+                    <button onclick="switchView('pyq-view')" class="p-6 bg-teal-50 border border-teal-100 rounded-2xl font-black text-teal-800 hover:bg-teal-100">Previous Year Papers 2025-2019 [PDF]</button>
+                    <button class="p-6 bg-teal-50 border border-teal-100 rounded-2xl font-black text-teal-800 hover:bg-teal-100">NEET Part Tests [PDF]</button>
+                </div>
+                <button onclick="switchView('prep-status-view')" class="text-teal-600 font-bold underline">← Back</button>
+            </div>
+
+
+
+            <div id="jee-2025-subjects" class="hidden view-transition text-center">
+                <h1 class="text-3xl font-black mb-8 text-gray-800">JEE Mains 2025</h1>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <button onclick="showChapters('physics')" class="p-8 bg-blue-50 border-2 border-blue-200 rounded-2xl font-black text-blue-800 text-xl hover:bg-blue-100 transition">Physics</button>
+                    <button onclick="showChapters('chemistry')" class="p-8 bg-orange-50 border-2 border-orange-200 rounded-2xl font-black text-orange-800 text-xl hover:bg-orange-100 transition">Chemistry</button>
+                    <button onclick="showChapters('maths')" class="p-8 bg-purple-50 border-2 border-purple-200 rounded-2xl font-black text-purple-800 text-xl hover:bg-purple-100 transition">Mathematics</button>
+                </div>
+                <button onclick="switchView('iit-jee-view')" class="text-teal-600 font-bold underline">← Back</button>
+            </div>
+
+            <div id="physics-chapters" class="hidden view-transition">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-black text-gray-800">Physics Chapters (32)</h2>
+                    <button onclick="switchView('jee-2025-subjects')" class="text-teal-600 font-bold">← Back</button>
+                </div>
+                <div class="grid grid-cols-1 gap-3 custom-scroll overflow-y-auto max-h-[60vh] p-2">
+                    <div onclick="openChapter('Math in Physics')" class="res-item">Math in Physics <span>2025: 7 Qs</span></div>
+                    <div onclick="openChapter('Units & Dimensions')" class="res-item">Units & Dimensions <span>2025: 25 Qs</span></div>
+                    <div onclick="openChapter('Motion in 1D')" class="res-item">Motion in 1D <span>2025: 11 Qs</span></div>
+                    <div onclick="openChapter('Motion in 2D')" class="res-item">Motion in 2D <span>2025: 9 Qs</span></div>
+                    <div onclick="openChapter('Laws of Motion')" class="res-item">Laws of Motion, Friction And Circular Motion <span>2025: 8 Qs</span></div>
+                    <div onclick="openChapter('Work Power Energy')" class="res-item">Work, Power & Energy <span>2025: 18 Qs</span></div>
+                    <div onclick="openChapter('COM & Collisions')" class="res-item">Centre Of Mass & Collisions <span>2025: 8 Qs</span></div>
+                    <div onclick="openChapter('Rotational Motion')" class="res-item">Rotational Motion <span>2025: 29 Qs</span></div>
+                    <div onclick="openChapter('Gravitation')" class="res-item">Gravitation <span>2025: 12 Qs</span></div>
+                    <div onclick="openChapter('Properties of Solids')" class="res-item">Properties of Solids <span>2025: 9 Qs</span></div>
+                    <div onclick="openChapter('Properties of Fluids')" class="res-item">Properties of Fluids <span>2025: 22 Qs</span></div>
+                    <div onclick="openChapter('Thermal Properties')" class="res-item">Thermal Properties (Reduced) <span>2025: 11 Qs</span></div>
+                    <div onclick="openChapter('Thermodynamics')" class="res-item">Thermodynamics (Reduced) <span>2025: 27 Qs</span></div>
+                    <div onclick="openChapter('KTG')" class="res-item">Kinetic Theory Of Gases <span>2025: 7 Qs</span></div>
+                    <div onclick="openChapter('Oscillations')" class="res-item">Oscillations (SHM) <span>2025: 11 Qs</span></div>
+                    <div onclick="openChapter('Waves & Sound')" class="res-item">Waves & Sound (Reduced) <span>2025: 11 Qs</span></div>
+                    <div onclick="openChapter('Electrostatics')" class="res-item">Electrostatics <span>2025: 36 Qs</span></div>
+                    <div onclick="openChapter('Capacitance')" class="res-item">Capacitance <span>2025: 16 Qs</span></div>
+                    <div onclick="openChapter('Current Electricity')" class="res-item">Current Electricity (Reduced) <span>2025: 20 Qs</span></div>
+                    <div onclick="openChapter('Magnetic Properties')" class="res-item">Magnetic Properties Of Matter (Reduced) <span>2025: 5 Qs</span></div>
+                    <div onclick="openChapter('Magnetism & Current')" class="res-item">Magnetism & Current <span>2025: 23 Qs</span></div>
+                    <div onclick="openChapter('EMI')" class="res-item">Electromagnetic Induction <span>2025: 8 Qs</span></div>
+                    <div onclick="openChapter('AC Circuits')" class="res-item">AC Circuits (Reduced) <span>2025: 10 Qs</span></div>
+                    <div onclick="openChapter('EM Waves')" class="res-item">Electromagnetic Waves <span>2025: 10 Qs</span></div>
+                    <div onclick="openChapter('Ray Optics')" class="res-item">Ray Optics (Reduced) <span>2025: 43 Qs</span></div>
+                    <div onclick="openChapter('Wave Optics')" class="res-item">Wave Optics <span>2025: 19 Qs</span></div>
+                    <div onclick="openChapter('Dual Nature')" class="res-item">Dual Nature (Reduced) <span>2025: 18 Qs</span></div>
+                    <div onclick="openChapter('Atomic Physics')" class="res-item">Atomic Physics <span>2025: 12 Qs</span></div>
+                    <div onclick="openChapter('Nuclear Physics')" class="res-item">Nuclear Physics (Reduced) <span>2025: 8 Qs</span></div>
+                    <div onclick="openChapter('Semiconductors')" class="res-item">Semiconductors (Reduced) <span>2025: 18 Qs</span></div>
+                    <div onclick="openChapter('Communication System')" class="res-item">Communication System (Removed) <span>2025: 0 Qs</span></div>
+                    <div onclick="openChapter('Experimental Physics')" class="res-item">Experimental Physics <span>2025: 4 Qs</span></div>
+                </div>
+            </div>
+
+            <div id="chemistry-chapters" class="hidden view-transition">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-black text-gray-800">Chemistry Chapters (33)</h2>
+                    <button onclick="switchView('jee-2025-subjects')" class="text-teal-600 font-bold">← Back</button>
+                </div>
+                <div class="grid grid-cols-1 gap-3 custom-scroll overflow-y-auto max-h-[60vh] p-2">
+                    <div onclick="openChapter('Mole Concept')" class="res-item">Physical Chemistry - Mole Concept <span>2025: 25 Qs</span></div>
+                    <div onclick="openChapter('Atomic Structure')" class="res-item">Physical Chemistry - Atomic Structure <span>2025: 23 Qs</span></div>
+                    <div onclick="openChapter('Periodic Table')" class="res-item">Inorganic Chemistry - Periodic Table <span>2025: 22 Qs</span></div>
+                    <div onclick="openChapter('Chemical Bonding')" class="res-item">Inorganic Chemistry - Chemical Bonding <span>2025: 22 Qs</span></div>
+                    <div onclick="openChapter('States of Matter')" class="res-item">Physical Chemistry - States of Matter (Removed) <span>2025: 2 Qs</span></div>
+                    <div onclick="openChapter('Thermodynamics (C)')" class="res-item">Physical Chemistry - Thermodynamics <span>2025: 32 Qs</span></div>
+                    <div onclick="openChapter('Chemical Equilibrium')" class="res-item">Physical Chemistry - Chemical Equilibrium <span>2025: 10 Qs</span></div>
+                    <div onclick="openChapter('Ionic Equilibrium')" class="res-item">Physical Chemistry - Ionic Equilibrium <span>2025: 15 Qs</span></div>
+                    <div onclick="openChapter('Redox Reactions')" class="res-item">Physical Chemistry - Redox Reactions <span>2025: 6 Qs</span></div>
+                    <div onclick="openChapter('Hydrogen')" class="res-item">Hydrogen (Removed) <span>2025: 0 Qs</span></div>
+                    <div onclick="openChapter('s Block')" class="res-item">Inorganic Chemistry - s Block (Removed) <span>2025: 0 Qs</span></div>
+                    <div onclick="openChapter('p Block (G13-14)')" class="res-item">Inorganic Chemistry - p Block (G13-14) (Reduced) <span>2025: 4 Qs</span></div>
+                    <div onclick="openChapter('GOC')" class="res-item">Organic Chemistry - General Organic Chemistry <span>2025: 43 Qs</span></div>
+                    <div onclick="openChapter('Hydrocarbons')" class="res-item">Organic Chemistry - Hydrocarbons <span>2025: 24 Qs</span></div>
+                    <div onclick="openChapter('Env. Chemistry')" class="res-item">Physical Chemistry - Env. Chemistry (Removed) <span>2025: 0 Qs</span></div>
+                    <div onclick="openChapter('Solid State')" class="res-item">Physical Chemistry - Solid State (Removed) <span>2025: 0 Qs</span></div>
+                    <div onclick="openChapter('Solutions')" class="res-item">Physical Chemistry - Solutions <span>2025: 23 Qs</span></div>
+                    <div onclick="openChapter('Electrochemistry')" class="res-item">Physical Chemistry - Electrochemistry <span>2025: 24 Qs</span></div>
+                    <div onclick="openChapter('Chemical Kinetics')" class="res-item">Physical Chemistry - Chemical Kinetics <span>2025: 25 Qs</span></div>
+                    <div onclick="openChapter('Surface Chemistry')" class="res-item">Inorganic Chemistry - Surface Chemistry (Removed) <span>2025: 0 Qs</span></div>
+                    <div onclick="openChapter('Metallurgy')" class="res-item">Inorganic Chemistry - Metallurgy (Removed) <span>2025: 0 Qs</span></div>
+                    <div onclick="openChapter('p Block (G15-18)')" class="res-item">Inorganic Chemistry - p Block (G15-18) (Reduced) <span>2025: 9 Qs</span></div>
+                    <div onclick="openChapter('d & f Block')" class="res-item">Inorganic Chemistry - d & f Block <span>2025: 25 Qs</span></div>
+                    <div onclick="openChapter('Coordination Compounds')" class="res-item">Inorganic Chemistry - Coordination Compounds <span>2025: 40 Qs</span></div>
+                    <div onclick="openChapter('Haloalkanes & Haloarenes')" class="res-item">Organic Chemistry - Haloalkanes & Haloarenes <span>2025: 15 Qs</span></div>
+                    <div onclick="openChapter('Alcohols, Phenols & Ethers')" class="res-item">Organic Chemistry - Alcohols, Phenols & Ethers <span>2025: 14 Qs</span></div>
+                    <div onclick="openChapter('Aldehydes & Ketones')" class="res-item">Organic Chemistry - Aldehydes & Ketones <span>2025: 17 Qs</span></div>
+                    <div onclick="openChapter('Carboxylic Acids')" class="res-item">Organic Chemistry - Carboxylic Acids <span>2025: 8 Qs</span></div>
+                    <div onclick="openChapter('Amines')" class="res-item">Organic Chemistry - Amines <span>2025: 19 Qs</span></div>
+                    <div onclick="openChapter('Biomolecules')" class="res-item">Organic Chemistry - Biomolecules <span>2025: 22 Qs</span></div>
+                    <div onclick="openChapter('Polymers')" class="res-item">Organic Chemistry - Polymers (Removed) <span>2025: 0 Qs</span></div>
+                    <div onclick="openChapter('Everyday Chemistry')" class="res-item">Everyday Chemistry (Removed) <span>2025: 1 Qs</span></div>
+                    <div onclick="openChapter('Practical Chemistry')" class="res-item">Inorganic Chemistry - Practical Chemistry <span>2025: 5 Qs</span></div>
+                </div>
+            </div>
+
+            <div id="maths-chapters" class="hidden view-transition">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-black text-gray-800">Mathematics Chapters </h2>
+                    <button onclick="switchView('jee-2025-subjects')" class="text-teal-600 font-bold">← Back</button>
+                </div>
+                <div class="grid grid-cols-1 gap-3 custom-scroll overflow-y-auto max-h-[60vh] p-2">
+                    <div onclick="openChapter('Basic Math')" class="res-item">Basic Maths <span>2025: 1 Qs</span></div>
+                    <div onclick="openChapter('Quadratic Equations')" class="res-item">Quadratic Equations <span>2025: 14 Qs</span></div>
+                    <div onclick="openChapter('Complex Numbers')" class="res-item">Complex Numbers (Reduced) <span>2025: 19 Qs</span></div>
+                    <div onclick="openChapter('Permutation & Combinations')" class="res-item">Permutation & Combinations <span>2025: 20 Qs</span></div>
+                    <div onclick="openChapter('Sequences & Series')" class="res-item">Sequences & Series (Reduced) <span>2025: 30 Qs</span></div>
+                    <div onclick="openChapter('Mathematics Induction')" class="res-item">Mathematics Induction (Removed) <span>2025: 0 Qs</span></div>
+                    <div onclick="openChapter('Binomial Theorem')" class="res-item">Binomial Theorem (Reduced) <span>2025: 23 Qs</span></div>
+                    <div onclick="openChapter('Trigonometric Ratios')" class="res-item">Trigonometry Ratios <span>2025: 00 Qs</span></div>
+                    <div onclick="openChapter('Trigonometric Equations')" class="res-item">Trigonometric Equations (Removed) <span>2025: 08 Qs</span></div>
+                    <div onclick="openChapter('Straight Lines')" class="res-item">Straight Lines (Reduced) <span>2025: 20 Qs</span></div>
+                    <div onclick="openChapter('Circle')" class="res-item">Circle (Reduced) <span>2025: 9 Qs</span></div>
+                    <div onclick="openChapter('Parabola')" class="res-item">Conic Section - Parabola (Reduced) <span>2025: 17 Qs</span></div>
+                    <div onclick="openChapter('Ellipse')" class="res-item">Conic Section - Ellipse (Reduced) <span>2025: 18 Qs</span></div>
+                    <div onclick="openChapter('Hyperbola')" class="res-item">Conic Section - Hyperbola (Reduced) <span>2025: 12 Qs</span></div>
+                    <div onclick="openChapter('Limits')" class="res-item">Limits <span>2025: 13 Qs</span></div>
+                    <div onclick="openChapter('Mathematical Reasoning')" class="res-item">Mathematical Reasoning (Removed) <span>2025: 00 Qs</span></div>
+                    <div onclick="openChapter('Statistics')" class="res-item">Statistics <span>2025: 8 Qs</span></div>
+                    <div onclick="openChapter('Height & Distance')" class="res-item">Height & Distance (Removed) <span>2025: 00 Qs</span></div>
+                    <div onclick="openChapter('Properties Of Triangle ')" class="res-item">Properties Of Triangle (Removed)<span>2025: 00 Qs</span></div>
+                    <div onclick="openChapter('Sets & Relations')" class="res-item">Sets & Relations <span>2025: 18 Qs</span></div>
+                    <div onclick="openChapter('Matrices')" class="res-item">Matrices <span>2025: 21 Qs</span></div>
+                    <div onclick="openChapter('Determinants')" class="res-item">Determinants (Reduced) <span>2025: 13 Qs</span></div>
+                    <div onclick="openChapter('Inverse Trigonometric Functions')" class="res-item">Inverse Trigonometric Functions <span>2025: 9 Qs</span></div>
+                    <div onclick="openChapter('Functions')" class="res-item">Functions <span>2025: 25 Qs</span></div>
+                    <div onclick="openChapter('Continuity & Differentiability')" class="res-item">Continuity & Differentiability <span>2025: 09 Qs</span></div>
+                    <div onclick="openChapter('Differentiation')" class="res-item">Differentiation <span>2025: 01 Qs</span></div>
+                    <div onclick="openChapter('Application Of Derivatives')" class="res-item">Application Of Derivatives (Reduced) <span>2025: 12 Qs</span></div>
+                    <div onclick="openChapter('Definite Integration')" class="res-item">Definite Integration (Reduced) <span>2025: 22 Qs</span></div>
+                    <div onclick="openChapter('Area Under Curves')" class="res-item">Area Under Curves <span>2025: 19 Qs</span></div>
+                    <div onclick="openChapter('Differential Equations')" class="res-item">Differential Equations (Reduced) <span>2025: 22 Qs</span></div>
+                    <div onclick="openChapter('Vector Algebra')" class="res-item">Vector Algebra (Reduced) <span>2025: 21 Qs</span></div>
+                    <div onclick="openChapter('3-D Geometry')" class="res-item">3-D Geometry (Reduced) <span>2025: 36 Qs</span></div>
+                    <div onclick="openChapter('Linear Programming')" class="res-item">Linear Programming (Removed) <span>2025: 00 Qs</span></div>
+                    <div onclick="openChapter('Probability')" class="res-item">Probability (Reduced) <span>2025: 23 Qs</span></div>
+                </div>
+            </div>
+
+            <div id="chapter-options-view" class="hidden view-transition text-center">
+                <h2 id="selected-chapter-title" class="text-2xl font-black mb-8 text-teal-900">Chapter Name</h2>
+                <div class="space-y-4 max-w-md mx-auto">
+                    <button onclick="showQuestionsList()" class="w-full p-6 bg-white border-2 border-teal-500 rounded-2xl font-bold text-teal-700 hover:bg-teal-50">All Previous Year Questions</button>
+                    <button class="w-full p-6 bg-white border-2 border-teal-500 rounded-2xl font-bold text-teal-700 hover:bg-teal-50">All Topic Wise PYQs</button>
+                </div>
+                <button onclick="switchView('jee-2025-subjects')" class="mt-8 text-gray-500 font-bold underline">← Back to Chapters</button>
+            </div>
+
+            <div id="questions-list-view" class="hidden view-transition">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-black text-gray-800">Questions</h2>
+                    <button onclick="switchView('chapter-options-view')" class="text-teal-600 font-bold">← Back</button>
+                </div>
+                <div class="space-y-4 custom-scroll overflow-y-auto max-h-[70vh]">
+                    <div onclick="openQuestionDetail(1, 'A quantity Q is formulated as X⁻²Y⁺³/²Z⁻²/⁵ \u22C5 X,Y and Z are independent parameters...', 'JEE Main 2025 (8 Apr Shift 2)')" class="p-6 bg-white border rounded-xl hover:shadow-md cursor-pointer">
+                        <span class="text-teal-600 font-bold">1</span>
+                        <p class="mt-2 text-gray-700 font-medium line-clamp-2">A quantity Q is formulated as X⁻²Y⁺³/²Z⁻²/⁵ \u22C5 X,Y and Z are independent parameters...</p>
+                        <p class="text-xs text-gray-400 mt-2 font-bold">JEE Main 2025 (8 Apr Shift 2)</p>
+                    </div>
+                    <div onclick="openQuestionDetail(2, 'A physical quantity C is related to four other quantities p,q,rand s as follows C=pq2r3√s.
+The percentage errors in the measurement of p,q,rand s are 1%, 2%, 3% and 2% respectively.The percentage error in the measurement of C will be _____%
+.', 'JEE Main 2025 (3 Apr Shift 2)')" class="p-6 bg-white border rounded-xl hover:shadow-md cursor-pointer">
+                        <span class="text-teal-600 font-bold">2</span>
+                        <p class="mt-2 text-gray-700 font-medium line-clamp-2">A physical quantity C is related to four other quantities p, q, r and s as follows C = pq²/√r \u22C5 s...</p>
+                        <p class="text-xs text-gray-400 mt-2 font-bold">JEE Main 2025 (3 Apr Shift 2)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="question-detail-view" class="hidden view-transition">
+                <div class="flex justify-between items-center mb-6 border-b pb-4">
+                    <div>
+                        <span class="font-black text-gray-900">Q <span id="q-detail-num">1</span></span>
+                        <p class="text-[10px] text-gray-500 font-bold" id="q-detail-meta">JEE Main 2025 (8 Apr Shift 2)</p>
+                    </div>
+                    <div id="q-timer" class="text-xl font-mono font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-lg">00:00</div>
+                </div>
+                <div class="mb-8"><p id="q-detail-text" class="text-lg text-gray-800 leading-relaxed font-medium">Question loading...</p></div>
+                <div id="options-container" class="grid grid-cols-1 gap-3 mb-10">
+                    <button class="text-left p-4 border-2 rounded-xl font-bold hover:border-teal-500 hover:bg-teal-50 transition flex items-center gap-4">
+                        <span class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm">A</span> <span id="opt-a">0.1</span>
+                    </button>
+                    <button class="text-left p-4 border-2 rounded-xl font-bold hover:border-teal-500 hover:bg-teal-50 transition flex items-center gap-4">
+                        <span class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm">B</span> <span id="opt-b">0.8</span>
+                    </button>
+                    <button class="text-left p-4 border-2 rounded-xl font-bold hover:border-teal-500 hover:bg-teal-50 transition flex items-center gap-4">
+                        <span class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm">C</span> <span id="opt-c">0.7</span>
+                    </button>
+                    <button class="text-left p-4 border-2 rounded-xl font-bold hover:border-teal-500 hover:bg-teal-50 transition flex items-center gap-4">
+                        <span class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm">D</span> <span id="opt-d">0.6</span>
+                    </button>
+                </div>
+                <button onclick="switchView('questions-list-view')" class="text-teal-600 font-bold">← Back to List</button>
+            </div>
+
+            <div id="songs-view" class="hidden view-transition bg-[#121212] rounded-2xl overflow-hidden text-white">
+                <div class="bg-gradient-to-b from-[#450a0a] to-[#121212] p-8">
+                    <h1 class="text-3xl font-black">HITS 2026 - Today's Top Songs</h1>
+                </div>
+                <div class="p-6 overflow-y-auto max-h-[400px]">
+                    <table class="w-full text-left text-sm"><tbody class="divide-y divide-gray-800">
+                        <tr class="hover:bg-white/5"><td class="py-4 text-teal-400 font-bold">1. I Just Might - Bruno Mars</td><td class="text-right text-green-500 font-bold cursor-pointer">Play</td></tr>
+                    </tbody></table>
+                </div>
+                <button onclick="switchView('home-view')" class="m-6 text-gray-500 font-bold">← Back</button>
+            </div>
+
+            <div id="movies-view" class="hidden view-transition flex flex-col bg-gray-100 rounded-2xl overflow-hidden">
+                <div class="p-5 border-b font-black text-gray-800 bg-white">Daily Movie Updates</div>
+                <div class="flex-1 overflow-y-auto max-h-[500px] p-4 space-y-4">
+                    <div class="p-5 bg-white rounded-xl shadow-sm"><h3 class="font-black">The Rip (2026)</h3><p class="text-xs text-gray-500">Action | 16 Jan 2026</p></div>
+                </div>
+                <button onclick="switchView('home-view')" class="p-4 bg-teal-600 text-white font-black">← Back</button>
+            </div>
+
+            <div id="focus-tools-menu" class="hidden view-transition text-center">
+                <h1 class="text-4xl font-black mb-10">Focus Tools</h1>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <div class="option-card flex-col p-8 justify-center" onclick="openTool('stopwatch')">🕒 Stopwatch</div>
+                    <div class="option-card flex-col p-8 justify-center border-teal-500 bg-teal-50" onclick="openTool('timer')">⏲️ Timer</div>
+                </div>
+                <button onclick="switchView('home-view')" class="text-teal-600 font-bold">← Home</button>
+            </div>
+
+            <div id="active-tool-view" class="hidden view-transition text-center py-10">
+                <h2 id="active-tool-title" class="text-xl font-black text-teal-800 mb-8 uppercase">TOOL</h2>
+                <div id="timer-display" class="text-8xl font-black text-gray-800 mb-10 font-mono">00:00:00</div>
+                <div id="timer-inputs" class="hidden flex justify-center gap-3 mb-10">
+                    <input type="number" id="h" placeholder="HH" class="w-20 p-4 border-2 rounded-xl text-center text-2xl font-black">
+                    <input type="number" id="m" placeholder="MM" class="w-20 p-4 border-2 rounded-xl text-center text-2xl font-black">
+                    <input type="number" id="s" placeholder="SS" class="w-20 p-4 border-2 rounded-xl text-center text-2xl font-black">
+                </div>
+                <div class="flex justify-center gap-4">
+                    <button id="timer-ctrl-btn" onclick="toggleTimer()" class="px-12 py-4 bg-[#0d9488] text-white rounded-2xl font-black text-xl">START</button>
+                    <button onclick="resetTimer()" class="px-12 py-4 bg-gray-100 text-gray-500 rounded-2xl font-black text-xl">RESET</button>
+                </div>
+                <button onclick="switchView('focus-tools-menu')" class="mt-12 text-gray-400 font-bold underline">← Back</button>
+            </div>
+            
+            <div id="pyq-view" class="hidden">PYQ Placeholder</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const thoughts = [
+        { q: "Never let the student inside you die.", a: "Narendra Modi" },
+        { q: "If you want to shine like a sun, first burn like a sun.", a: "APJ Abdul Kalam" }
+    ];
+
+    function showRandomQuote() {
+        const s = thoughts[Math.floor(Math.random() * thoughts.length)];
+        document.getElementById('dynamic-quote').innerText = `"${s.q}"`;
+        document.getElementById('dynamic-author').innerText = `- ${s.a}`;
+    }
+
+    // Auth & Navigation
+    function sendOTP() { document.getElementById('auth-form').classList.add('hidden'); document.getElementById('otp-step').classList.remove('hidden'); }
+    function verifyOTP() { checkUser(); }
+    function checkUser() {
+        const saved = localStorage.getItem('jee_2026_user');
+        document.getElementById('login-view').classList.add('hidden');
+        if(!saved) document.getElementById('profile-view').classList.remove('hidden');
+        else showDashboard(JSON.parse(saved));
+    }
+    function saveProfile() {
+        const name = document.getElementById('reg-name').value;
+        if(!name) return alert("Enter Name");
+        const userData = { name };
+        localStorage.setItem('jee_2026_user', JSON.stringify(userData));
+        document.getElementById('profile-view').classList.add('hidden');
+        showDashboard(userData);
+    }
+    function showDashboard(data) {
+        document.getElementById('main-content').classList.remove('hidden');
+        document.getElementById('user-display-name').innerText = data.name;
+        showRandomQuote();
+        switchView('home-view');
+    }
+
+    // View Management & Timers
+    let mainTimerInterval, qTimerInterval, activeTool='', timeInSeconds=0, isRunning=false, qSeconds=0;
+
+    function switchView(id) {
+        const views = ['login-view','profile-view','home-view','prep-status-view','iit-jee-view','jee-2025-subjects','physics-chapters','chemistry-chapters','maths-chapters','chapter-options-view','questions-list-view','question-detail-view','songs-view','movies-view','focus-tools-menu','active-tool-view','pyq-view'];
+        views.forEach(v => { const el = document.getElementById(v); if(el) el.classList.add('hidden'); });
+        document.getElementById(id).classList.remove('hidden');
+        
+        if(id !== 'active-tool-view') stopMainTimer();
+        if(id !== 'question-detail-view') clearInterval(qTimerInterval);
+    }
+
+    function showChapters(sub) { switchView(sub + '-chapters'); }
+    function openChapter(name) { document.getElementById('selected-chapter-title').innerText = name; switchView('chapter-options-view'); }
+    function showQuestionsList() { switchView('questions-list-view'); }
+
+    function openQuestionDetail(num, text, meta) {
+        switchView('question-detail-view');
+        document.getElementById('q-detail-num').innerText = num;
+        document.getElementById('q-detail-text').innerText = text;
+        document.getElementById('q-detail-meta').innerText = meta;
+        startQuestionTimer();
+    }
+
+    function startQuestionTimer() {
+        clearInterval(qTimerInterval);
+        qSeconds = 0;
+        const display = document.getElementById('q-timer');
+        display.innerText = "00:00";
+        qTimerInterval = setInterval(() => {
+            qSeconds++;
+            const m = Math.floor(qSeconds / 60).toString().padStart(2, '0');
+            const s = (qSeconds % 60).toString().padStart(2, '0');
+            display.innerText = `${m}:${s}`;
+        }, 1000);
+    }
+
+    // Main Tools Timer
+    function openTool(t){ activeTool=t; switchView('active-tool-view'); document.getElementById('active-tool-title').innerText=t; document.getElementById('timer-inputs').classList.toggle('hidden', t!=='timer'); resetTimer(); }
+    function toggleTimer() {
+        if (isRunning) { stopMainTimer(); document.getElementById('timer-ctrl-btn').innerText="RESUME"; }
+        else {
+            if (activeTool==='timer' && timeInSeconds===0) timeInSeconds = (parseInt(document.getElementById('h').value)||0)*3600 + (parseInt(document.getElementById('m').value)||0)*60 + (parseInt(document.getElementById('s').value)||0);
+            if (activeTool!=='stopwatch' && timeInSeconds<=0) return;
+            isRunning=true; document.getElementById('timer-ctrl-btn').innerText="PAUSE";
+            mainTimerInterval = setInterval(() => {
+                if(activeTool==='stopwatch') timeInSeconds++; else { if(timeInSeconds>0) timeInSeconds--; else { stopMainTimer(); return; } }
+                updateTimerDisplay();
+            }, 1000);
+        }
+    }
+    function stopMainTimer(){ clearInterval(mainTimerInterval); isRunning=false; document.getElementById('timer-ctrl-btn').innerText="START"; }
+    function resetTimer(){ stopMainTimer(); timeInSeconds=0; updateTimerDisplay(); }
+    function updateTimerDisplay(){
+        const h=Math.floor(timeInSeconds/3600).toString().padStart(2,'0'), m=Math.floor((timeInSeconds%3600)/60).toString().padStart(2,'0'), s=(timeInSeconds%60).toString().padStart(2,'0');
+        document.getElementById('timer-display').innerText=`${h}:${m}:${s}`;
+    }
+
+    function logout() { localStorage.removeItem('jee_2026_user'); location.reload(); }
+    function updateClock() {
+        const now = new Date();
+        document.getElementById('clock').textContent = now.toLocaleTimeString('en-GB');
+        document.getElementById('date').textContent = now.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+    }
+    setInterval(updateClock, 1000); updateClock();
+</script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/699f0fcb2b22dd1c3afef6cf/1jialbf58';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script--></body>
+</html>
